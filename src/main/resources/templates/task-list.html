@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Task List</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+    <style>
+        .sidebar { width: 200px; position: fixed; height: 100%; background: #f4f4f4; padding: 10px; }
+        .content { margin-left: 220px; padding: 20px; }
+    </style>
+</head>
+<body>
+<div class="sidebar">
+    <h3>Menu</h3>
+    <a href="/tasks/new">Create Task</a><br/>
+    <a href="/tasks">View Tasks</a><br/>
+    <a href="/logout">Logout</a>
+</div>
+
+<div class="content">
+    <h2>All Tasks</h2>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Reminder Time</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="task : ${tasks}">
+            <td th:text="${task.title}"></td>
+            <td th:text="${task.description}"></td>
+            <td th:text="${task.reminderTime}"></td>
+            <td th:text="${task.email}"></td>
+            <td th:text="${task.phoneNumber}"></td>
+            <td>
+                <a th:href="@{/tasks/delete/{id}(id=${task.id})}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Task</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+    <style>
+        .sidebar { width: 200px; position: fixed; height: 100%; background: #f4f4f4; padding: 10px; }
+        .content { margin-left: 220px; padding: 20px; }
+    </style>
+</head>
+<body>
+<div class="sidebar">
+    <h3>Menu</h3>
+    <a href="/tasks/new">Create Task</a><br/>
+    <a href="/tasks">View Tasks</a><br/>
+    <a href="/logout">Logout</a>
+</div>
+
+<div class="content">
+    <h2>Create a New Task</h2>
+    <form action="#" th:action="@{/tasks}" th:object="${task}" method="post">
+        <label>Title:</label>
+        <input type="text" th:field="*{title}" required /><br/>
+
+        <label>Description:</label>
+        <textarea th:field="*{description}" required></textarea><br/>
+
+        <label>Reminder Time:</label>
+        <input type="datetime-local" th:field="*{reminderTime}" required /><br/>
+
+        <label>Email Notification:</label>
+        <input type="checkbox" th:field="*{emailNotification}" /><br/>
+
+        <label>Email:</label>
+        <input type="email" th:field="*{email}" /><br/>
+
+        <label>SMS Notification:</label>
+        <input type="checkbox" th:field="*{smsNotification}" /><br/>
+
+        <label>Phone Number:</label>
+        <input type="tel" th:field="*{phoneNumber}" /><br/>
+
+        <button type="submit">Save Task</button>
+    </form>
+</div>
+</body>
+</html>
